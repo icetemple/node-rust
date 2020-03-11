@@ -1,9 +1,12 @@
-FROM node:10 AS builder
+ARG NODE_VERSION=12
+
+FROM node:$NODE_VERSION AS builder
 
 ENV RUSTUP_HOME=/usr/local/rustup \
     CARGO_HOME=/usr/local/cargo \
-    PATH=/usr/local/cargo/bin:$PATH \
-    RUST_VERSION=stable
+    PATH=/usr/local/cargo/bin:$PATH
+
+ARG RUST_VERSION=stable
 
 RUN set -eux \
     && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs \
